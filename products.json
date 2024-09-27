@@ -1,0 +1,49 @@
+[
+    {
+        "id" : 1,
+        "name" : "Hiking bags",
+        "price" : 3500,
+        "image" : "./HB.jpg"
+    },
+    {
+        "id" : 2,
+        "name" : "Sports trouser",
+        "price" : 2000,
+        "image" : "./sports-trouser.jpg"
+    },
+    {
+        "id" : 3,
+        "name" : "tab",
+        "price" : 35000,
+        "image" : "./tab.jpg"
+    }, {
+        "id" : 4,
+        "name" : "Headset",
+        "price" : 3500,
+        "image" : "./headset.jpg"
+    },
+    {
+        "id" : 5,
+        "name" : "Toy car",
+        "price" : 6000,
+        "image" : "./CT.jpg"
+    },
+    {
+        "id" : 6,
+        "name" : "summer shirts",
+        "price" : 1300,
+        "image" : "./summer-shirts.jpg"
+    },
+    {
+        "id" : 7,
+        "name" : "Girl shirts",
+        "price" : 1700,
+        "image" : "./girls-shirts.jpg"
+    },
+    {
+        "id" : 8,
+        "name" : "Cotton shirt",
+        "price" : 1600,
+        "image" : "./cotton-shirts.jpg"
+    }
+]
