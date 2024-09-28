@@ -3,13 +3,17 @@ let body = document.querySelector('body');
 let closBtn = document.querySelector('.close')
 let productList = document.querySelector('.products-list');
 let cartList = document.querySelector('.cart-list');
-let iconSpan = document.querySelector('.cart-icon span');
+let cartIconSpan = document.querySelector('.cart-icon span');
+
 
 
 
 
 let productListJSON = []
 let carts = []
+
+
+
 
 
 cartIcon.addEventListener('click',() => {
@@ -40,10 +44,16 @@ if (productListJSON.length > 0) {
                 <button class="add-to-cart">Add to Cart</button>`
 
                 productList.appendChild( newProduct );
+                
+                
     })
 }
 
+
 }
+
+
+
 
 
 productList.addEventListener('click',() => {
@@ -54,6 +64,7 @@ productList.addEventListener('click',() => {
         addToCart(productId)
     }
 })
+
 
 
 const addToCart = (productId) => {
@@ -76,10 +87,53 @@ const addToCart = (productId) => {
         )
                  
     } else
-    { carts[positionCartProduct].quantity += 1}
-   
-    
-     addCartToHtml()
+    {
+         carts[positionCartProduct].quantity += 1
+        }
+        addCartToHtml()
+        addCartToMemory()
+
+}
+const addCartToMemory = () => {
+    localStorage.setItem('cart', JSON.stringify(carts))
+}
+
+const addCartToHtml = () => {
+cartList.innerHTML = ''
+let totalQuantity = 0
+if (carts.length > 0) {
+    carts.forEach(cart =>{
+        totalQuantity = totalQuantity + cart.quantity
+        let newCart = document.createElement('div')
+        newCart.classList.add('item')
+        // let positionProduct = productList.findIndex((value) => value.Id == cart.productId)
+        // let info = productList[positionProduct]
+      
+        
+
+        newCart.innerHTML = `
+         <div class="image">
+                    <img src="" alt="">
+                </div>
+                <div class="name">
+                    Name
+                </div>
+
+                <div class="total-price">
+                    
+               </div>
+
+                <div class="quantity">
+                    <span>-</span>
+                    <span>${cart.quantity}</span>
+                    <span>+</span>
+                </div>
+`
+cartList.appendChild(newCart)
+
+    })
+}
+cartIconSpan.innerText = totalQuantity
 }
 
 
@@ -93,6 +147,10 @@ fetch('products.json')
 .then( data => {
     productListJSON = data
     addProductsCartToHtml()
+    if (localStorage.getItem('cart')) {
+        carts = JSON.parse(localStorage.getItem('cart'))
+        addCartToHtml()
+    }
     
 })
 }
