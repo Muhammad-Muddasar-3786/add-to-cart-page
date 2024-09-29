@@ -152,3 +152,16 @@ body.show-cart .container{
 .cart-list::-webkit-scrollbar{
     width: 0;
 }
+
+
+
+@media screen and (max-width:992px){
+    .products-list{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media screen and (max-width:768px){
+    .products-list{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

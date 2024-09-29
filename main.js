@@ -106,6 +106,7 @@ if (carts.length > 0) {
         totalQuantity = totalQuantity + cart.quantity
         let newCart = document.createElement('div')
         newCart.classList.add('item')
+        newCart.dataset.id = cart.productId
         // let positionProduct = productList.findIndex((value) => value.Id == cart.productId)
         // let info = productList[positionProduct]
       
@@ -134,6 +135,43 @@ cartList.appendChild(newCart)
     })
 }
 cartIconSpan.innerText = totalQuantity
+}
+
+
+cartList.addEventListener('click',(e) => {
+let positionClick = e.target
+if (positionClick.classList.contains('minus') || positionClick.classList.contains('plus')) {
+    let productId = positionClick.parentElement.dataset.id
+    let type = 'minus'
+    if (positionClick.classList.contains('plus')) {
+        type = 'plus'
+        changeQuantity(productId, type)
+    }
+}
+})
+
+const changeQuantity = (productId, type) => {
+    let positionItemInCart = carts.findIndex((value) => value.productId == productId)
+    if (positionItemInCart > 0) {
+
+        switch (type) {
+            case plus:
+                carts[positionItemInCart].quantity = carts[positionItemInCart].quantity + 1
+                break;
+        
+            default:
+                let valueChange = carts[positionItemInCart].quantity - 1
+                if (valueChange > 0) {
+                    carts[positionItemInCart].quantity = valueChange
+                }else {
+                    carts.splice(positionItemInCart, 1)
+                }
+                break;
+        }
+        
+    }
+    addCartToMemory()
+    addCartToHtml()
 }
 
 
